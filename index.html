@@ -60,7 +60,7 @@
             color: transparent;
         }
 
-        /* New animated underline for navigation links */
+        /* Animated underline for navigation links */
         .nav-link {
             position: relative;
         }
@@ -82,7 +82,7 @@
             transform-origin: bottom left;
         }
 
-        /* New animated indicator for one-click link */
+        /* Animated indicator for one-click link */
         .one-click-link {
             position: relative;
         }
@@ -114,13 +114,33 @@
                     <h1 class="text-2xl font-bold mb-2 gradient-text">voltsshX</h1>
                     <p class="text-gray-500">Ultimate Provisioner - v1.0.0</p>
                 </div>
-                <div class="flex space-x-4">
-                    <a href="#overview" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link">Overview</a>
-                    <a href="#features" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link">Features</a>
-                    <a href="#installation" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link">Installation</a>
-                    <a href="#oneclick" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link one-click-link">One-Click</a>
-                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="menu-toggle" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+
+                <!-- Desktop Navigation (Pill-shaped) -->
+                <nav id="desktop-nav" class="hidden md:block">
+                    <div class="bg-white rounded-full p-2 shadow-sm flex space-x-4">
+                        <a href="#overview" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link px-4 py-2 rounded-full">Overview</a>
+                        <a href="#features" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link px-4 py-2 rounded-full">Features</a>
+                        <a href="#installation" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link px-4 py-2 rounded-full">Installation</a>
+                        <a href="#oneclick" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link px-4 py-2 rounded-full one-click-link">One-Click</a>
+                    </div>
+                </nav>
+
             </div>
+
+            <!-- Mobile Dropdown Menu -->
+            <nav id="mobile-nav" class="hidden md:hidden absolute top-20 right-4 w-48 bg-white rounded-lg shadow-lg py-4 z-10">
+                <a href="#overview" class="block text-gray-700 hover:bg-gray-100 px-4 py-2 transition rounded-lg">Overview</a>
+                <a href="#features" class="block text-gray-700 hover:bg-gray-100 px-4 py-2 transition rounded-lg">Features</a>
+                <a href="#installation" class="block text-gray-700 hover:bg-gray-100 px-4 py-2 transition rounded-lg">Installation</a>
+                <a href="#oneclick" class="block text-gray-700 hover:bg-gray-100 px-4 py-2 transition rounded-lg">One-Click</a>
+            </nav>
         </header>
 
         <!-- Hero Section -->
@@ -305,7 +325,6 @@
         });
         feather.replace();
         
-        // Mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize all copy buttons
             document.querySelectorAll('.copy-btn').forEach(btn => {
@@ -317,6 +336,21 @@
                         icon.setAttribute('data-feather', 'copy');
                         feather.replace();
                     }, 1000);
+                });
+            });
+
+            // Mobile menu toggle logic
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileNav = document.getElementById('mobile-nav');
+
+            menuToggle.addEventListener('click', function() {
+                mobileNav.classList.toggle('hidden');
+            });
+            
+            // Hide mobile menu when a link is clicked
+            mobileNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.add('hidden');
                 });
             });
         });
