@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>voltsshX-Ultimate Provisioner - v1.0.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fcfcfc;
+            color: #1d1d1f;
+        }
+        .code-block {
+            background-color: #27272a;
+            color: #e4e4e7;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            overflow-x: auto;
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #3f3f46;
+            color: #d4d4d4;
+            border: none;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover {
+            background: #52525b;
+        }
+        .command {
+            background-color: #e5e5e5;
+            color: #4b5563;
+            border-radius: 6px;
+            padding: 2px 8px;
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            display: inline-block;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #34d399, #06b6d4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* New animated underline for navigation links */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #06b6d4;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
+            border-radius: 7px;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* New animated indicator for one-click link */
+        .one-click-link {
+            position: relative;
+        }
+        .one-click-link::before {
+            content: '👆'; /* Using an emoji instead of a CSS triangle */
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            animation: bounce 1.5s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(5px);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        <!-- Header -->
+        <header class="mb-16" data-aos="fade-down">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl font-bold mb-2 gradient-text">voltsshX</h1>
+                    <p class="text-gray-500">Ultimate Provisioner - v1.0.0</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#overview" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link">Overview</a>
+                    <a href="#features" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link">Features</a>
+                    <a href="#installation" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link">Installation</a>
+                    <a href="#oneclick" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link one-click-link">One-Click</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="mb-12 sm:mb-20" data-aos="fade-up">
+            <div class="bg-gradient-to-r from-gray-100 to-gray-200 rounded-2xl p-6 sm:p-8 md:p-12">
+                <h2 class="text-xl sm:text-xl font-bold mb-3 sm:mb-4">Automated Server Provisioning</h2>
+                <p class="text-base sm:text-base text-gray-700 mb-4 sm:mb-6">Streamline your Voltssh-X server setup with a single, powerful automation tool that handles installations, configurations, and user provisioning.</p>
+                <div class="flex flex-col-2 sm:flex-row gap-3 sm:gap-4">
+                    <a href="#installation" class="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-full font-medium transition">Get Started</a>
+                    <a href="#features" class="border border-emerald-500 text-emerald-500 hover:bg-emerald-50 px-6 py-3 rounded-full font-medium transition">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section id="overview" class="mb-12 sm:mb-20" data-aos="fade-up">
+            <h2 class="text-xl sm:text-xl font-bold mb-4 sm:mb-6 flex items-center">
+                <i data-feather="info" class="mr-2"></i> Overview
+            </h2>
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <p class="text-gray-700 mb-4">The <span class="command">provision_user.sh</span> script is a powerful automation tool designed to streamline the setup and user provisioning process for Voltssh-X servers.</p>
+                <p class="text-gray-700">It consolidates all necessary service installations, configurations, and user creation steps into a single, easy-to-use interactive script.</p>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="mb-12 sm:mb-20" data-aos="fade-up">
+            <h2 class="text-xl sm:text-xl font-bold mb-4 sm:mb-6 flex items-center">
+                <i data-feather="zap" class="mr-2"></i> Key Automation Features
+            </h2>
+            
+            <div class="space-y-6">
+                <!-- Feature 1 -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-xl font-semibold mb-3 text-emerald-600">1. Service Installation and Configuration</h3>
+                    <p class="text-gray-700 mb-4">The script intelligently checks for and installs essential Voltssh-X services with optimal configurations:</p>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                        <li><strong>WebSocket (ePRO) Service:</strong> Auto-configures port 80 proxy to local SSH</li>
+                        <li><strong>SSL Tunnel Service:</strong> Sets up secure port 443 forwarding</li>
+                        <li><strong>UDPGW Service:</strong> Configures high-performance settings (100,000 max clients)</li>
+                    </ul>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-xl font-semibold mb-3 text-emerald-600">2. User Provisioning</h3>
+                    <p class="text-gray-700 mb-2">Automated user creation with sensible defaults:</p>
+                    <div class="code-block mb-3">
+                        <span class="text-green-400"># Default settings</span><br>
+                        Password: 0000<br>
+                        Expiration: 60 days<br>
+                        Connection Limit: 99999
+                    </div>
+                    <p class="text-gray-700">Includes user-friendly menu for selecting predefined saver names.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-xl font-semibold mb-3 text-emerald-600">3. Local and Remote Execution</h3>
+                    <p class="text-gray-700">Seamless provisioning for both local and remote servers with consistent experience.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-xl font-semibold mb-3 text-emerald-600">4. Safety and Reliability</h3>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                        <li>Root privilege verification</li>
+                        <li>Binary existence checks</li>
+                        <li>Automatic <span class="command">sshd_config</span> backup</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Installation Section -->
+        <section id="installation" class="mb-12 sm:mb-20" data-aos="fade-up">
+            <h2 class="text-xl sm:text-xl font-bold mb-4 sm:mb-6 flex items-center">
+                <i data-feather="download" class="mr-2"></i> Installation Guide
+            </h2>
+            
+            <div class="space-y-8">
+                <!-- Shell Script Method -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-emerald-600">Shell Script Method</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-gray-700 mb-2">1. Place the script in a system-wide location:</p>
+                            <div class="code-block relative">
+                                sudo mv bin/provision_user.sh /usr/bin/provision_user.sh
+                                <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo mv bin/provision_user.sh /usr/bin/provision_user.sh')">
+                                    <i data-feather="copy" width="12" height="12"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-gray-700 mb-2">2. Make it executable:</p>
+                            <div class="code-block relative">
+                                sudo chmod +x /usr/bin/provision_user.sh
+                                <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo chmod +x /usr/bin/provision_user.sh')">
+                                    <i data-feather="copy" width="12" height="12"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-gray-700 mb-2">3. Run the script:</p>
+                            <div class="code-block relative">
+                                sudo provision_user.sh
+                                <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo provision_user.sh')">
+                                    <i data-feather="copy" width="12" height="12"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Go Version -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-emerald-600">Go Version (Recommended)</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-gray-700 mb-2">1. Download the pre-compiled binary:</p>
+                            <div class="code-block relative">
+                                wget -O /usr/local/bin/provisioner "https://github.com/aibtechpvt/vxuprovisioner/releases/download/release/provisioner"
+                                <button class="copy-btn" onclick="navigator.clipboard.writeText('wget -O /usr/local/bin/provisioner \"https://github.com/aibtechpvt/vxuprovisioner/releases/download/release/provisioner\"')">
+                                    <i data-feather="copy" width="12" height="12"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-gray-700 mb-2">2. Make it executable:</p>
+                            <div class="code-block relative">
+                                sudo chmod +x /usr/local/bin/provisioner
+                                <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo chmod +x /usr/local/bin/provisioner')">
+                                    <i data-feather="copy" width="12" height="12"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-gray-700 mb-2">3. Run the binary:</p>
+                            <div class="code-block relative">
+                                sudo provisioner
+                                <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo provisioner')">
+                                    <i data-feather="copy" width="12" height="12"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- One-Click Install -->
+                <div id="oneclick" class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-emerald-600">One-Click Installation</h3>
+                    <p class="text-gray-700 mb-4">For the fastest setup, run this single command:</p>
+                    <div class="code-block relative">
+                        wget -O /usr/local/bin/provisioner "https://github.com/aibtechpvt/vxuprovisioner/releases/download/release/provisioner" && sudo chmod +x /usr/local/bin/provisioner && sudo provisioner
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('wget -O /usr/local/bin/provisioner \"https://github.com/aibtechpvt/vxuprovisioner/releases/download/release/provisioner\" && sudo chmod +x /usr/local/bin/provisioner && sudo provisioner')">
+                            <i data-feather="copy" width="12" height="12"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-20 pt-8 border-t border-gray-200">
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm">
+                <p class="text-gray-500 mb-4 md:mb-0">© 2025 voltsshX Provisioner. All rights reserved.</p>
+                <div class="flex space-x-4 sm:space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-emerald-500 transition">
+                        <i data-feather="github"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        feather.replace();
+        
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all copy buttons
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    icon.setAttribute('data-feather', 'check');
+                    feather.replace();
+                    setTimeout(() => {
+                        icon.setAttribute('data-feather', 'copy');
+                        feather.replace();
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
