@@ -108,41 +108,46 @@
 <body class="min-h-screen">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         <!-- Header -->
-        <header class="mb-16" data-aos="fade-down">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h1 class="text-2xl font-bold mb-2 gradient-text">voltsshX</h1>
-                    <p class="text-gray-500">Ultimate Provisioner - v1.0.0</p>
-                </div>
-                
-                <!-- Mobile Menu Button -->
-                <button id="menu-toggle" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
-                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-
-                <!-- Desktop Navigation (Pill-shaped) -->
-                <nav id="desktop-nav" class="hidden md:block">
-                    <div class="bg-white rounded-full p-2 shadow-sm flex space-x-4">
-                        <a href="#overview" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link px-4 py-2 rounded-full">Overview</a>
-                        <a href="#features" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link px-4 py-2 rounded-full">Features</a>
-                        <a href="#installation" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link px-4 py-2 rounded-full">Installation</a>
-                        <a href="#oneclick" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link px-4 py-2 rounded-full one-click-link">One-Click</a>
-                    </div>
-                </nav>
-
+        <header class="relative z-50 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <div>
+            <h1 class="text-2xl font-bold gradient-text">voltsshX</h1>
+            <p class="text-gray-500 text-sm">Ultimate Provisioner - v1.0.0</p>
             </div>
-            
-            <!-- Move mobile nav OUTSIDE the header -->
-            <nav id="mobile-nav" 
-                class="hidden md:hidden fixed top-20 right-4 w-48 bg-white rounded-lg shadow-lg py-4 z-[9999]">
-            <a href="#overview" class="block text-gray-700 hover:bg-gray-100 px-4 py-2 transition rounded-lg">Overview</a>
-            <a href="#features" class="block text-gray-700 hover:bg-gray-100 px-4 py-2 transition rounded-lg">Features</a>
-            <a href="#installation" class="block text-gray-700 hover:bg-gray-100 px-4 py-2 transition rounded-lg">Installation</a>
-            <a href="#oneclick" class="block text-gray-700 hover:bg-gray-100 px-4 py-2 transition rounded-lg">One-Click</a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:block">
+            <div class="bg-white rounded-full p-2 shadow-sm flex space-x-4">
+                <a href="#overview" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link px-4 py-2 rounded-full">Overview</a>
+                <a href="#features" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link px-4 py-2 rounded-full">Features</a>
+                <a href="#installation" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link px-4 py-2 rounded-full">Installation</a>
+                <a href="#oneclick" class="text-gray-500 hover:text-emerald-500 transition text-sm nav-link px-4 py-2 rounded-full one-click-link">One-Click</a>
+            </div>
             </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-toggle" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+            <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+            </button>
+        </div>
         </header>
+
+        <!-- Mobile Navigation (full overlay) -->
+        <nav id="mobile-nav"
+        class="fixed inset-0 bg-black bg-opacity-50 hidden opacity-0 transition-opacity duration-300 z-50">
+
+        <!-- White menu panel -->
+        <div class="menu-panel absolute top-20 right-4 w-48 bg-white rounded-lg shadow-lg py-4 
+                    transform -translate-y-5 opacity-0 transition-all duration-300">
+            <a href="#overview" class="block text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-lg">Overview</a>
+            <a href="#features" class="block text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-lg">Features</a>
+            <a href="#installation" class="block text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-lg">Installation</a>
+            <a href="#oneclick" class="block text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-lg">One-Click</a>
+        </div>
+        </nav>
 
         <!-- Hero Section -->
         <section class="mb-12 sm:mb-20" data-aos="fade-up">
@@ -319,42 +324,71 @@
     </div>
 
     <script>
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-        feather.replace();
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize all copy buttons
-            document.querySelectorAll('.copy-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const icon = this.querySelector('i');
-                    icon.setAttribute('data-feather', 'check');
-                    feather.replace();
-                    setTimeout(() => {
-                        icon.setAttribute('data-feather', 'copy');
-                        feather.replace();
-                    }, 1000);
-                });
-            });
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+    });
+    feather.replace();
 
-            // Mobile menu toggle logic
-            const menuToggle = document.getElementById('menu-toggle');
-            const mobileNav = document.getElementById('mobile-nav');
-
-            menuToggle.addEventListener('click', function() {
-                mobileNav.classList.toggle('hidden');
-            });
-            
-            // Hide mobile menu when a link is clicked
-            mobileNav.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileNav.classList.add('hidden');
-                });
-            });
+    document.addEventListener('DOMContentLoaded', function () {
+        // ✅ Copy buttons
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const icon = this.querySelector('i');
+            icon.setAttribute('data-feather', 'check');
+            feather.replace();
+            setTimeout(() => {
+            icon.setAttribute('data-feather', 'copy');
+            feather.replace();
+            }, 1000);
         });
+        });
+
+        // ✅ Mobile menu logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        const menuPanel = mobileNav.querySelector('.menu-panel'); // inner white box
+
+        function openMenu() {
+        mobileNav.classList.remove('hidden');
+        setTimeout(() => {
+            mobileNav.classList.add('opacity-100');
+            menuPanel.classList.add('translate-y-0', 'opacity-100');
+        }, 10);
+        }
+
+        function closeMenu() {
+        mobileNav.classList.remove('opacity-100');
+        menuPanel.classList.remove('translate-y-0', 'opacity-100');
+        setTimeout(() => {
+            mobileNav.classList.add('hidden');
+        }, 300); // match transition duration
+        }
+
+        // Toggle
+        menuToggle.addEventListener('click', () => {
+        if (mobileNav.classList.contains('hidden')) {
+            openMenu();
+        } else {
+            closeMenu();
+        }
+        });
+
+        // Click backdrop
+        mobileNav.addEventListener('click', (e) => {
+        if (e.target === mobileNav) {
+            closeMenu();
+        }
+        });
+
+        // Click links
+        mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            closeMenu();
+        });
+        });
+    });
     </script>
 </body>
 </html>
